@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
@@ -26,3 +27,6 @@ To watch some training videos, visit http://www.youtube.com/user/c9ide
 =======
 # likelion_homework_twitter_RoR
 >>>>>>> 2857b533f296fa12b967b8755ceae1c5e403443e
+=======
+# likelion_twitter_RoR
+>>>>>>> 2924a08509bcfe0915c51723ac5d28bd785b1e8c
