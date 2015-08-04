@@ -1,0 +1,6 @@
+<h1>modifying</h1>
+<form action="/powerade/update/<%=@one_post.id%>" method="POST">
+    <input type="text" value=<%= @one_post.post_username %> name="new_username"><br>
+    <textarea name="new_content"><%= @one_post.post_content %></textarea>
+    <input type=submit value="수정">
+</form>

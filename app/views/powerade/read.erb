@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </HEAD>
+    <BODY>
+        
+        <nav class="navbar navbar-info navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">fTweeter</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="http://www.likelion.net">Likelion</a></li>
+                <li><a href="https://www.facebook.com/kresnik00">Facebook</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+        <br><br><br><br>
+        <div class = "container">
+            <h2>Tweet on my website!</h2>
+            <form action="powerade/write" method="POST" enctype="multipart/form-data">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">  
+                            <input type="text" name="author_name" placeholder="input your name"> 
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea rows="3" cols="100" name="content" placeholder="What's on your mind?"></textarea>
+                        <input type="file" name="image_file">
+                    </div>
+                    <div class="panel-footer">
+                        <input type="password" name="password" placeholder="input password for delete">
+                        <button style = "border:0;outline:0;" type="submit"><img src="/img/Tweet.png" width="50" height="30"></button>
+                    </div>
+                </div>
+            </form>
+        
+        <% @posts.reverse_each do |p|%>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title"> 
+                    <%= p.post_username %> 
+                    
+                </div>
+            </div>
+            <div class="panel-body">
+                <%=p.post_content %><br>
+                <% if @isthere = 1 %>
+                <img src="<%=p.my_image.url %>"/>
+                <!--<a href="<%=p.my_image.url %>">link</a>-->
+                <% end %>
+
+            </div>
+            <div class="panel-footer">
+                <% p.replies.reverse_each do |r| %>
+                    <p><%=r.content%></p>
+                <% end %>
+                <form action="powerade/write_reply" method="POST">
+                    <input type="hidden" name="post_id" value="<%=p.id %>">
+                    <input type="text" name="myreply" placeholder="type comment">
+                    <button style = "border:0;outline:0;" type="submit"><img src="/img/Tweet.png" width="50" height="30"></button>
+                </form>
+                    
+                
+            </div>
+            <div class="panel-footer">
+                <form action = "powerade/delete/<%= p.id %>" method = "POST">
+                        <input type="password" name="pwd" placeholder = "input password">
+                        <input type="submit" value="X">
+                        <a href="powerade/modify/<%= p.id %>">[M]</a>
+                    </form>
+            </div>
+        </div>
+        
+        <% end %>
+    </div>
+    </BODY>
+</HTML>
+
+
+
+
